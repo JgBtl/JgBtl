@@ -3,254 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jägerbataillon | JgBtl Division</title> 
+    <title>JgBtl | Jägerbataillon - Digitale Division</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            /* Echte Bundeswehr-Farbpalette */
-            --bw-olive: #4b533a;      /* Heeresgrün */
-            --bw-olive-light: #6b7355; 
-            --bw-black: #12140e;      /* Anthrazit-Schwarz */
-            --bw-grey: #2a2d24;       /* Steingrau-Oliv */
-            --bw-accent: #d1d5db;     /* Lichtgrau */
-            --text: #f3f4f6;
-            --transition: all 0.3s ease;
+            /* Bundeswehr & Jäger Farbschema */
+            --bw-wood: #2d361e;       /* Dunkles Waldgrün */
+            --bw-leaf: #4f5b35;       /* Klassisches Oliv */
+            --bw-signal: #a3b18a;     /* Helles Akzentgrün */
+            --bw-white: #f8f9fa;      /* Off-White für Texte */
+            --bw-dark: #12140e;       /* Beinahe Schwarz für den Hintergrund */
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
-            background-color: var(--bw-black);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
+            background-color: var(--bw-dark);
+            color: var(--bw-white);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Subtiles Hintergrund-Pattern (Taktisches Raster) */
-        .bg-pattern {
+        /* Subtiles Hintergrund-Pattern (Militär-Struktur) */
+        body::after {
+            content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--bw-grey) 1px, transparent 1px);
+            background-image: radial-gradient(var(--bw-leaf) 0.5px, transparent 0.5px);
             background-size: 40px 40px;
-            opacity: 0.2;
+            opacity: 0.1;
             z-index: -1;
         }
 
+        /* NAVIGATION */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(18, 20, 14, 0.98);
-            border-bottom: 2px solid var(--bw-olive);
+            background: rgba(18, 20, 14, 0.95);
+            border-bottom: 2px solid var(--bw-leaf);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.4rem; 
             font-weight: 800; 
-            letter-spacing: 1px;
+            text-transform: uppercase; 
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .logo span { color: var(--bw-olive-light); }
 
-        .nav-links { display: flex; gap: 30px; }
+        .logo b { color: var(--bw-signal); }
+
         .nav-links a {
-            color: var(--text);
+            color: var(--bw-white);
             text-decoration: none;
+            margin-left: 30px;
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
             transition: var(--transition);
             opacity: 0.7;
         }
-        .nav-links a:hover { opacity: 1; color: var(--bw-olive-light); }
 
-        .hero { 
-            padding: 100px 8% 80px; 
-            max-width: 1400px; 
-            margin: 0 auto; 
+        .nav-links a:hover { opacity: 1; color: var(--bw-signal); }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 100px 8% 80px;
+            max-width: 1300px;
+            margin: 0 auto;
             text-align: left;
         }
 
-        .status-bar {
+        .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: var(--bw-grey);
+            background: rgba(79, 91, 53, 0.2);
+            border: 1px solid var(--bw-leaf);
             padding: 8px 16px;
-            border-radius: 2px;
-            border-left: 4px solid var(--bw-olive-light);
-            margin-bottom: 30px;
+            border-radius: 4px;
+            color: var(--bw-signal);
             font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; }
-
-        h1 { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem); 
             font-weight: 800;
             text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        h1 span { color: var(--bw-olive-light); }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #2ecc71;
+        }
 
-        .hero-text {
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--bw-white);
+        }
+
+        .hero p {
             max-width: 600px;
             font-size: 1.1rem;
             opacity: 0.8;
             margin-bottom: 40px;
-            border-left: 1px solid var(--bw-olive);
+            border-left: 3px solid var(--bw-leaf);
             padding-left: 20px;
         }
 
-        .cta-group { display: flex; gap: 20px; flex-wrap: wrap; }
+        /* BUTTONS */
+        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 18px 32px;
-            font-weight: 800;
-            text-transform: uppercase;
+            background: var(--bw-leaf);
+            color: white;
+            padding: 18px 35px;
             text-decoration: none;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
+            font-weight: 800;
+            border-radius: 4px;
             transition: var(--transition);
-            border-radius: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-primary { background: var(--bw-olive); color: white; }
-        .btn-primary:hover { background: var(--bw-olive-light); transform: translateY(-2px); }
+        .btn:hover {
+            background: var(--bw-signal);
+            color: var(--bw-dark);
+            transform: translateY(-3px);
+        }
 
-        .btn-outline { border: 2px solid var(--bw-olive); color: white; }
-        .btn-outline:hover { background: rgba(107, 115, 85, 0.1); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--bw-leaf);
+        }
 
-        .features {
+        .btn-outline:hover { background: var(--bw-leaf); color: white; }
+
+        /* BENTO GRID (Features) */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 80px;
         }
 
-        .feature-card {
-            background: var(--bw-grey);
+        .card {
+            background: rgba(45, 54, 30, 0.2);
+            border: 1px solid rgba(163, 177, 138, 0.1);
             padding: 40px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px;
             transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
             position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
-            border-color: var(--bw-olive-light);
+        /* Dekorative Ecke für Karten */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 40px; height: 40px;
+            border-top: 2px solid var(--bw-leaf);
+            border-right: 2px solid var(--bw-leaf);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            background: rgba(45, 54, 30, 0.4);
+            border-color: var(--bw-signal);
             transform: scale(1.02);
         }
 
-        .feature-card i { color: var(--bw-olive-light); margin-bottom: 20px; }
-        .feature-card h3 { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .card:hover::before { border-color: var(--bw-signal); width: 60px; height: 60px; }
+
+        .card i { color: var(--bw-signal); margin-bottom: 20px; }
+        .card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 10px; 
             text-transform: uppercase; 
-            margin-bottom: 15px; 
             letter-spacing: 1px;
         }
-        .feature-card p { font-size: 0.95rem; opacity: 0.7; }
+        .card p { opacity: 0.7; font-size: 0.95rem; }
 
-        footer {
-            padding: 40px 8%;
-            text-align: center;
-            border-top: 1px solid var(--bw-grey);
-            font-size: 0.8rem;
-            opacity: 0.5;
+        /* FOOTER / INFO */
+        .info-bar {
+            margin-top: 100px;
+            padding: 30px 8%;
+            background: var(--bw-wood);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            opacity: 0.6;
         }
 
         @media (max-width: 768px) {
-            nav { padding: 15px 5%; }
             .nav-links { display: none; }
             .hero { padding-top: 60px; }
+            h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-pattern"></div>
-
     <nav>
         <div class="logo">
-            <i data-lucide="shield-half"></i>
-            JgBtl<span>.Division</span>
+            <i data-lucide="shield-check"></i> JgBtl<b>.DIVISION</b>
         </div>
         <div class="nav-links">
-            <a href="./">Zentrale</a>
+            <a href="./">Home</a>
             <a href="fuhrpark">Fuhrpark</a>
-            <a href="handbuch">Vorschriften</a>
-            <a href="organisation">Struktur</a>
+            <a href="handbuch">Handbuch</a>
+            <a href="struktur">Struktur</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="status-bar">
-            <div class="dot"></div>
-            Bereitschaft: Einsatzbereit // JgBtl 2026
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            Einsatzbereit // Jägerbataillon
         </div>
-
-        <h1>Gereift im Einsatz.<br><span>Standhaft im Kampf.</span></h1>
         
-        <p class="hero-text">
-            Das Jägerbataillon ist das Rückgrat der Division. Wir vereinen moderne Taktik mit traditioneller Kameradschaft. Werde Teil einer Gemeinschaft, die auf Disziplin und gegenseitigem Vertrauen basiert.
+        <h1>Treue um Treue.<br>Präzision im Einsatz.</h1>
+        
+        <p>
+            Willkommen beim Jägerbataillon. Wir sind eine spezialisierte Einheit für koordinierte Operationen. Disziplin, Kameradschaft und taktisches Verständnis bilden unseren Kern.
         </p>
 
-        <div class="cta-group">
-            <a href="https://discord.gg/DM2Au3f6RS" class="btn btn-primary">
-                <i data-lucide="user-plus"></i> Rekrutierung
+        <div class="btn-group">
+            <a href="https://discord.gg/DM2Au3f6RS" class="btn">
+                <i data-lucide="users"></i> Jetzt Bewerben
             </a>
             <a href="handbuch" class="btn btn-outline">
                 <i data-lucide="file-text"></i> Dienstvorschrift
             </a>
         </div>
 
-        <div class="features">
-            <div class="feature-card">
-                <i data-lucide="target" size="32"></i>
-                <h3>Präzision</h3>
-                <p>Wir agieren nach klaren Protokollen. Jede Bewegung sitzt, jeder Befehl wird mit höchster Sorgfalt ausgeführt.</p>
-            </div>
-            <div class="feature-card">
-                <i data-lucide="users" size="32"></i>
-                <h3>Kameradschaft</h3>
-                <p>Niemand bleibt zurück. Der Zusammenhalt innerhalb der Gruppen ist unser höchstes Gut im Feld.</p>
-            </div>
-            <div class="feature-card">
+        <div class="grid">
+            <a href="fuhrpark" class="card">
                 <i data-lucide="truck" size="32"></i>
-                <h3>Mobilität</h3>
-                <p>Mit unserem Fuhrpark sind wir schnell verlegbar und an jedem Einsatzort sofort wirkungsvoll.</p>
-            </div>
+                <h3>Fuhrpark</h3>
+                <p>Übersicht der motorisierten Kräfte, vom Wolf bis zum schweren Transportgerät.</p>
+            </a>
+            
+            <a href="handbuch" class="card">
+                <i data-lucide="radio" size="32"></i>
+                <h3>Funkwesen</h3>
+                <p>Standardisierte Funkprotokolle und Codes für eine lückenlose Kommunikation.</p>
+            </a>
+
+            <a href="struktur" class="card">
+                <i data-lucide="layers" size="32"></i>
+                <h3>Struktur</h3>
+                <p>Organigramm der Kompanien und Züge innerhalb des Bataillons.</p>
+            </a>
         </div>
     </section>
 
-    <footer>
-        &copy; 2026 Jägerbataillon Division // Nur für den internen Dienstgebrauch
-    </footer>
+    <div class="info-bar">
+        <span>© Jägerbataillon Division</span>
+        <span>Sicherheit // Ordnung // Disziplin</span>
+    </div>
 
     <script>
-        // Lucide Icons laden
+        // Lucide Icons initialisieren
         lucide.createIcons();
+
+        // Subtiler Scroll-Effekt
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.padding = '15px 8%';
+                nav.style.background = 'rgba(18, 20, 14, 1)';
+            } else {
+                nav.style.padding = '20px 8%';
+                nav.style.background = 'rgba(18, 20, 14, 0.95)';
+            }
+        });
     </script>
 </body>
 </html>
