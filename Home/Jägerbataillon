@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JgBtl | Bundeswehr Division</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css"> 
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ===== MILITÄRISCHES FARBSCHEMA ===== */
+        :root {
+            --bw-green: #3e442d; /* Bundeswehr Oliv */
+            --bw-accent: #6b705c;
+            --bw-dark: #1a1c12;
+            --bw-gold: #c2a878; /* Für Rang-Akzente */
+        }
+
+        /* ===== MOBILE BLOCKER ===== */
+        #mobile-blocker {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bw-dark);
+            z-index: 10000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            #mobile-blocker { display: flex; }
+            body { overflow: hidden; }
+        }
+
+        /* ===== DESIGN UPGRADES ===== */
+        .card {
+            background: rgba(62, 68, 45, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--bw-green);
+            transform: translateY(-5px);
+            background: rgba(62, 68, 45, 0.25);
+        }
+
+        .btn-main {
+            background: var(--bw-green) !important;
+            border: 1px solid var(--bw-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 800;
+            color: #f0f0f0;
+        }
+
+        .status-box {
+            border-left: 4px solid var(--bw-green);
+            background: rgba(255,255,255,0.02);
+            padding: 20px;
+        }
+
+        /* ===== NAVIGATION STYLING ===== */
+        nav {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(26, 28, 18, 0.8);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mobile-blocker">
+        <i data-lucide="shield-alert" style="color: var(--bw-green); width: 48px; height: 48px;"></i>
+        <h2 style="color: white; margin-top: 15px;">ZUGRIFF BESCHRÄNKT</h2>
+        <p style="color: rgba(255,255,255,0.5);">Nur für stationäre Terminals (PC) freigegeben.</p>
+    </div>
+
+    <nav>
+        <div class="logo" style="cursor: pointer;" onclick="window.location.href='index.html'">
+            Jäger<b>bataillon</b>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="../Fuhrpark/">Fuhrpark</a>
+                <a href="../Handbuch/">Handbuch</a>
+                <a href="../Team/">Stammrolle</a>
+            </div>
+
+            <button class="maintenance" style="background: #333; color: white; border: none; padding: 8px 15px; border-radius: 5px;">
+                <i data-lucide="radio" style="width: 16px; display: inline; vertical-align: middle;"></i> Funkkanal
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span style="background: var(--bw-green); padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800;">DIVISION</span>
+            <span style="opacity: 0.5; font-size: 0.8rem; letter-spacing: 2px;">STATUS: EINSATZBEREIT</span>
+        </div>
+        <h1>Dienen. Schützen. Kämpfen.</h1>
+
+        <div class="hero-text">
+            <p>Willkommen beim Jägerbataillon. Wir sind die spezialisierte Infanterie für schwieriges Gelände und urbane Operationen.</p>
+            <p style="opacity:0.6; font-size: 0.9rem;">Trete einer strukturierten Division bei und erlebe realistisches Bundeswehr-Roleplay.</p>
+        </div>
+
+        <div class="stats" style="margin-top: 30px;">
+            <div class="stats-item">
+                <h3 style="color: var(--bw-gold);"><i data-lucide="map-pin"></i> Standort</h3>
+                <p>Königsbrunn Kaserne</p>
+            </div>
+            <div class="stats-item">
+                <h3 style="color: var(--bw-gold);"><i data-lucide="users"></i> Rekruten</h3>
+                <p>Gesucht</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; display: flex; gap: 15px;">
+            <a href="https://discord.gg/DM2Au3f6RS" class="btn btn-main">
+                <i data-lucide="file-text"></i> Jetzt Bewerben
+            </a>
+            <a href="../Handbuch/" class="btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                Dienstvorschrift lesen
+            </a>
+        </div>
+    </section>
+
+    <section class="section fade-in">
+        <h2 style="text-align: center; margin-bottom: 40px;">Einsatzbereiche</h2>
+        <div class="bento-grid">
+            <div class="card" onclick="window.location.href='../Fuhrpark/'" style="cursor: pointer;">
+                <div class="card-inner">
+                    <i data-lucide="truck"></i>
+                    <h3>Fuhrpark</h3>
+                    <p>Übersicht aller Rad- und Kettenfahrzeuge der Division.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='../Handbuch/'" style="cursor: pointer;">
+                <div class="card-inner">
+                    <i data-lucide="book-open"></i>
+                    <h3>Handbuch</h3>
+                    <p>Dienstvorschriften, Funkcodes und Verhaltensregeln.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <i data-lucide="award"></i>
+                    <h3>Laufbahn</h3>
+                    <p>Vom Schützen bis zum Offizier – starte deine Karriere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section fade-in">
+        <div class="status-box">
+            <h3 style="margin-bottom: 10px;"><i data-lucide="info" style="color: var(--bw-green);"></i> Aktuelle Meldung</h3>
+            <p style="opacity: 0.7;">Die Division befindet sich aktuell im Aufbau. Ausrüstung und Unterkünfte werden vorbereitet. Interessierte Bürger können sich im Rekrutierungsbüro (Discord) melden.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div style="font-weight: 600; opacity: 0.8; letter-spacing: 1px;">BUNDESWEHR ROLEPLAY | JÄGERBATAILLON</div>
+        <p style="font-size: 0.7rem; opacity: 0.4; margin-top: 10px;">Diese Seite dient reinem Simulations- und Roleplay-Zwecken.</p>
+        <div class="footer-links" style="margin-top: 20px;">
+            <a href="../Impressum/">Impressum</a>
+            <a href="../Nutzungsbedingungen/">Hausordnung</a>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Fade-In Animation
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
