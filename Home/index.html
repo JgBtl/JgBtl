@@ -9,22 +9,16 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* ===== KOMPLETTES DESIGN (CSS) ===== */
+        /* ===== STYLING DIREKT IN DER DATEI ===== */
         :root {
             --bw-green: #3e442d; 
             --bw-accent: #6b705c;
             --bw-dark: #0f1108;
             --bw-card: #1a1c12;
-            --bw-gold: #c2a878;
             --text: #f0f0f0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
             background-color: var(--bw-dark);
@@ -47,12 +41,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
+        .logo { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; }
         .logo b { color: var(--bw-green); }
 
         .nav-links a {
@@ -68,11 +57,7 @@
         .nav-links a:hover { opacity: 1; color: var(--bw-green); }
 
         /* Hero Bereich */
-        .hero {
-            padding: 100px 5% 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .hero { padding: 100px 5% 60px; max-width: 1200px; margin: 0 auto; }
 
         .badge {
             display: inline-block;
@@ -85,11 +70,7 @@
             letter-spacing: 1px;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 20px; }
 
         .hero-text {
             max-width: 600px;
@@ -109,13 +90,10 @@
             font-weight: 700;
             transition: 0.3s;
             cursor: pointer;
+            border: none;
         }
 
-        .btn-main {
-            background: var(--bw-green);
-            color: white;
-        }
-
+        .btn-main { background: var(--bw-green); color: white; }
         .btn-main:hover { background: var(--bw-accent); transform: translateY(-2px); }
 
         /* Grid / Karten */
@@ -132,24 +110,12 @@
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
-            cursor: pointer;
         }
 
-        .card:hover {
-            border-color: var(--bw-green);
-            transform: translateY(-5px);
-        }
+        .card:hover { border-color: var(--bw-green); transform: translateY(-5px); }
+        .card i { color: var(--bw-green); margin-bottom: 15px; display: block; }
 
-        .card i { color: var(--bw-green); margin-bottom: 15px; }
-
-        .status-box {
-            background: rgba(255,255,255,0.03);
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 40px;
-        }
-
-        /* Mobile Blocker */
+        /* Mobile Blocker (PC Only) */
         #mobile-blocker {
             display: none;
             position: fixed;
@@ -169,7 +135,7 @@
         }
 
         footer {
-            padding: 60px 5%;
+            padding: 40px 5%;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
             margin-top: 60px;
@@ -184,13 +150,13 @@
     <div id="mobile-blocker">
         <i data-lucide="shield-alert" style="width: 50px; height: 50px; color: var(--bw-green);"></i>
         <h2 style="margin: 15px 0;">ZUGRIFF VERWEIGERT</h2>
-        <p>Dieses System erfordert ein stationäres Terminal (PC).</p>
+        <p>Dieses Terminal ist nur für stationäre Desktop-Systeme freigegeben.</p>
     </div>
 
     <nav>
         <div class="logo">JgBtl<b>.DIVISION</b></div>
         <div class="nav-links">
-            <a href="#">Home</a>
+            <a href="index.html">Home</a>
             <a href="#">Fuhrpark</a>
             <a href="#">Handbuch</a>
             <a href="#">Team</a>
@@ -203,15 +169,40 @@
         
         <div class="hero-text">
             <p>Disziplin. Kameradschaft. Tapferkeit.</p>
-            <p style="opacity: 0.6;">Willkommen im Hauptquartier der Jägerdivision. Hier koordinieren wir unsere Einsätze und verwalten die Truppenstärken.</p>
+            <p style="opacity: 0.6;">Willkommen im digitalen Hauptquartier. Trete der Division bei und erlebe taktisches Roleplay auf höchstem Niveau.</p>
         </div>
 
         <a href="https://discord.gg/DM2Au3f6RS" class="btn btn-main">
-            <i data-lucide="crosshair"></i> Dem Bataillon beitreten
+            <i data-lucide="crosshair"></i> Jetzt Bewerben
         </a>
 
         <div class="bento-grid">
             <div class="card">
-                <i data-lucide="truck"></i>
+                <i data-lucide="truck" size="32"></i>
                 <h3>Fuhrpark</h3>
-                <p>Ü
+                <p>Übersicht der Rad- und Kettenfahrzeuge der Division.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="book-open" size="32"></i>
+                <h3>Handbuch</h3>
+                <p>Dienstvorschriften und taktische Leitfäden.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="award" size="32"></i>
+                <h3>Stammrolle</h3>
+                <p>Aktuelle Personalübersicht und Dienstgrade.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 JÄGERBATAILLON ROLEPLAY | NUR FÜR SIMULATIONSZWECKE
+    </footer>
+
+    <script>
+        // Startet die Icons
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
