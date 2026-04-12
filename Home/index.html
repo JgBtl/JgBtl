@@ -9,118 +9,162 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* CSS direkt in der Datei, damit es sicher lädt */
         :root {
-            --bw-green: #3e442d;
-            --bw-accent: #6b705c;
-            --bw-dark: #0f1108;
-            --bw-card: #1a1c12;
+            --bw-green: #4f5b35; /* Etwas helleres Militärgrün für besseren Kontrast */
+            --bw-green-glow: rgba(79, 91, 53, 0.3);
+            --bw-dark: #0a0c07;
+            --bw-card: #14160e;
             --text: #f0f0f0;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
             background-color: var(--bw-dark);
+            /* Subtiles HUD-Raster Hintergrund */
+            background-image: 
+                linear-gradient(rgba(79, 91, 53, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 91, 53, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Scanline Animation */
+        body::before {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(79, 91, 53, 0.1);
+            z-index: 1000;
+            pointer-events: none;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { top: -5%; }
+            100% { top: 100%; }
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(15, 17, 8, 0.95);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 25px 5%;
+            background: rgba(10, 12, 7, 0.8);
+            backdrop-filter: blur(10px); /* Glas-Effekt */
+            border-bottom: 1px solid rgba(79, 91, 53, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .logo { font-size: 1.3rem; font-weight: 800; text-transform: uppercase; }
-        .logo b { color: var(--bw-green); }
+        .logo { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .logo b { color: var(--bw-green); text-shadow: 0 0 10px var(--bw-green-glow); }
 
         .nav-links a {
             color: var(--text);
             text-decoration: none;
-            margin-left: 25px;
+            margin-left: 30px;
             font-weight: 600;
-            font-size: 0.8rem;
-            opacity: 0.6;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            transition: var(--transition);
         }
 
-        .hero { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+        .nav-links a:hover { opacity: 1; color: var(--bw-green); }
+
+        .hero { 
+            padding: 120px 5% 60px; 
+            max-width: 1200px; 
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Dekorative Ecke oben links */
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 80px; left: 5%;
+            width: 40px; height: 40px;
+            border-top: 2px solid var(--bw-green);
+            border-left: 2px solid var(--bw-green);
+            opacity: 0.5;
+        }
 
         .badge {
-            display: inline-block;
-            background: var(--bw-green);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(79, 91, 53, 0.15);
+            border: 1px solid var(--bw-green);
+            padding: 6px 12px;
+            border-radius: 2px;
+            font-size: 0.65rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: var(--bw-green);
+            text-transform: uppercase;
         }
 
-        h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; }
+        .badge::before {
+            content: "";
+            width: 6px; height: 6px;
+            background: var(--bw-green);
+            margin-right: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        h1 { 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); 
+            margin-bottom: 25px; 
+            text-transform: uppercase; 
+            line-height: 0.9;
+            font-weight: 800;
+        }
 
         .btn {
-            display: inline-flex;
             background: var(--bw-green);
             color: white;
-            padding: 16px 32px;
+            padding: 18px 38px;
             text-decoration: none;
             font-weight: 800;
-            border-radius: 4px;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px -10px var(--bw-green);
+        }
+
+        .btn:hover { 
+            background: #5d6b3e; 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 25px -10px var(--bw-green);
         }
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 80px;
         }
 
         .card {
             background: var(--bw-card);
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.03);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card i { color: var(--bw-green); margin-bottom: 15px; display: block; }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">JgBtl<b>.DIVISION</b></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="fuhrpark.html">Fuhrpark</a>
-            <a href="handbuch.html">Handbuch</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <span class="badge">Einsatzstatus: Bereit</span>
-        <h1>Jägerbataillon</h1>
-        <p style="margin-bottom: 40px; opacity: 0.7;">Willkommen im digitalen Hauptquartier. Disziplin und Kameradschaft stehen an erster Stelle.</p>
-
-        <a href="https://discord.gg/DM2Au3f6RS" class="btn">Jetzt Bewerben</a>
-
-        <div class="bento-grid">
-            <div class="card">
-                <i data-lucide="truck"></i>
-                <h3>Fuhrpark</h3>
-                <p>Alle Fahrzeuge der Division.</p>
-            </div>
-            <div class="card">
-                <i data-lucide="book-open"></i>
-                <h3>Handbuch</h3>
-                <p>Regeln und Funkcodes.</p>
-            </div>
-        </div>
-    </section>
-
-    <script>lucide.createIcons();</script>
-</body>
-</html>
+        /* Hover Effekt für die Karten */
+        .card::before {
