@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuhrpark System | Wartung</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+:root {
+    --bg: #0f1110;
+    --panel: #1a1d18;
+    --accent: #8da05e;
+    --danger: #a05e5e;
+    --text: #eaeaea;
+    --muted: #888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HEADER */
+.header {
+    padding: 20px 40px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.status {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+/* MAIN */
+.container {
+    padding: 40px;
+}
+
+/* SYSTEM BOX */
+.system-box {
+    background: var(--panel);
+    border: 1px solid #222;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.system-box h2 {
+    margin-bottom: 10px;
+}
+
+.system-box p {
+    color: var(--muted);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* CARDS */
+.card {
+    background: var(--panel);
+    padding: 25px;
+    border: 1px solid #222;
+    transition: 0.3s;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.card i {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+/* PROGRESS BAR */
+.progress {
+    height: 6px;
+    background: #222;
+    margin-top: 10px;
+}
+
+.progress div {
+    height: 100%;
+    background: var(--accent);
+}
+
+/* FOOTER INFO */
+.footer {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Fuhrpark System // Bundeswehr Nürnberg</h1>
+    <div class="status">STATUS: WARTUNG</div>
+</div>
+
+<div class="container">
+
+<div class="system-box">
+    <h2>Systemmeldung</h2>
+    <p>
+        Der Fuhrpark befindet sich aktuell im Aufbau. Fahrzeuge sowie Infrastruktur 
+        (Baracken / Kaserne) werden derzeit entwickelt und integriert.
+    </p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<i data-lucide="truck"></i>
+<h3>Fahrzeuge</h3>
+<p>Noch nicht verfügbar</p>
+<div class="progress"><div style="width: 25%"></div></div>
+</div>
+
+<div class="card">
+<i data-lucide="home"></i>
+<h3>Kaserne</h3>
+<p>Bundeswehr Nürnberg im Bau</p>
+<div class="progress"><div style="width: 40%"></div></div>
+</div>
+
+<div class="card">
+<i data-lucide="wrench"></i>
+<h3>Werkstatt</h3>
+<p>System wird eingerichtet</p>
+<div class="progress"><div style="width: 15%"></div></div>
+</div>
+
+<div class="card">
+<i data-lucide="database"></i>
+<h3>Datenbank</h3>
+<p>Struktur wird erstellt</p>
+<div class="progress"><div style="width: 30%"></div></div>
+</div>
+
+</div>
+
+<div class="footer">
+Letzte Aktualisierung: April 2026 // JgBtl Division System
+</div>
+
+</div>
+
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>
