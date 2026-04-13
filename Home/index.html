@@ -33,16 +33,23 @@ body {
     overflow-x: hidden;
 }
 
-/* Hintergrund Upgrade */
+/* Hintergrund Animation */
 body::before {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 20%, rgba(141,160,94,0.1), transparent 60%);
+    background: radial-gradient(circle at 20% 20%, rgba(141,160,94,0.12), transparent 60%);
+    animation: bgMove 10s infinite alternate ease-in-out;
     z-index: -1;
 }
 
+@keyframes bgMove {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.1); opacity: 1; }
+}
+
+/* NAV */
 nav {
     display: flex;
     justify-content: space-between;
@@ -56,6 +63,7 @@ nav {
     font-weight: 800;
     display: flex;
     gap: 10px;
+    animation: fadeDown 0.8s ease;
 }
 
 .logo span { color: var(--bw-lime); }
@@ -70,22 +78,16 @@ nav {
     text-decoration: none;
     font-size: 0.85rem;
     opacity: 0.8;
+    transition: 0.3s;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: var(--bw-lime);
+    opacity: 1;
 }
 
-/* HERO ANIMATION */
-.hero h1 {
-    animation: fadeUp 1s ease forwards;
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px);}
-    to { opacity: 1; transform: translateY(0);}
-}
-
+/* HERO */
 .hero {
     padding: 100px 8%;
     max-width: 1300px;
@@ -98,42 +100,20 @@ nav {
     padding: 8px 16px;
     display: inline-block;
     margin-bottom: 20px;
+    animation: fadeUp 0.8s ease;
 }
 
 h1 {
     font-size: 3rem;
     text-transform: uppercase;
+    animation: fadeUp 1s ease;
 }
 
 .hero p {
     color: var(--bw-sand);
     max-width: 600px;
     margin: 20px 0;
-}
-
-/* BUTTONS UPGRADE */
-.btn {
-    padding: 14px 30px;
-    text-decoration: none;
-    font-weight: 800;
-    display: inline-flex;
-    gap: 10px;
-}
-
-.btn-primary {
-    background: var(--bw-olive);
-    color: white;
-    box-shadow: 0 0 15px rgba(141,160,94,0.3);
-}
-
-.btn-primary:hover {
-    background: var(--bw-lime);
-    box-shadow: 0 0 25px rgba(141,160,94,0.6);
-}
-
-.btn-secondary {
-    border: 1px solid var(--bw-sand);
-    color: var(--bw-sand);
+    animation: fadeUp 1.2s ease;
 }
 
 /* CARDS */
@@ -149,10 +129,11 @@ h1 {
     padding: 30px;
     border-bottom: 4px solid var(--bw-olive);
     transition: 0.3s;
+    animation: fadeUp 1s ease;
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-10px) scale(1.02);
     border-bottom-color: var(--bw-lime);
 }
 
@@ -162,26 +143,26 @@ h1 {
 }
 
 .card:hover i {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(5deg);
 }
 
-/* STATS */
-.stats {
-    display: flex;
-    gap: 40px;
-    margin-top: 60px;
-    flex-wrap: wrap;
-}
-
-.stats div h2 {
-    color: var(--bw-lime);
-}
-
-/* INFO BOX */
+/* INFO */
 .work {
     margin-top: 60px;
     border: 1px dashed var(--bw-olive);
     padding: 20px;
+    animation: fadeUp 1.3s ease;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 </style>
@@ -194,72 +175,50 @@ h1 {
         <i data-lucide="shield"></i>
         JgBtl<span>.DIVISION</span>
     </div>
+
     <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Dienstplan</a>
-        <a href="#">Fuhrpark</a>
+        <a href="https://github.com/JgBtl/JgBtl/tree/main/Fahrzeuge">Fahrzeuge</a>
         <a href="#">Handbuch</a>
     </div>
 </nav>
 
 <main class="hero">
 
-<div class="status-tag">Status: Truppenaufbau</div>
+<div class="status-tag">Status: Ausbildungsdivision (Vorbereitung)</div>
 
 <h1>Jägerbataillon Division</h1>
 
 <p>
-Unser AusbildungsTeam führt Rekruten durch die Grundausbildung. 
-Nach erfolgreichem Abschluss besteht die Möglichkeit, an der Divisionsausbildung teilzunehmen.
+Unsere Division befindet sich aktuell in der Aufbauphase.  
+Fahrzeuge und interne Systeme werden entwickelt, während das Handbuch als zentrale Grundlage dient.
 </p>
-
-<a href="https://discord.gg/DM2Au3f6RS" class="btn btn-primary">
-    <i data-lucide="users"></i> Jetzt Bewerben
-</a>
-
-<a href="#" class="btn btn-secondary">
-    <i data-lucide="file-text"></i> Dienstvorschrift
-</a>
-
-<!-- STATS -->
-<div class="stats">
-    <div><h2>Ausbildung</h2><p>Aktiv</p></div>
-    <div><h2>Phase 1</h2><p>Grundausbildung</p></div>
-    <div><h2>Coming Soon</h2><p>Fahrzeuge</p></div>
-</div>
 
 <!-- CARDS -->
 <div class="bento">
 
 <div class="card">
-<i data-lucide="target"></i>
-<h3>Ausbildung</h3>
-<p>Strukturierte Grundausbildung für neue Rekruten mit Fokus auf Disziplin und Teamarbeit.</p>
-</div>
-
-<div class="card">
 <i data-lucide="book"></i>
-<h3>Dienstvorschrift</h3>
-<p>Die Dienstvorschriften werden aktuell erstellt und bald verfügbar sein.</p>
+<h3>Handbuch</h3>
+<p>Aktuell in Bearbeitung – enthält bald alle Regeln, Funkcodes und interne Vorschriften.</p>
 </div>
 
 <div class="card">
 <i data-lucide="truck"></i>
-<h3>Fuhrpark</h3>
-<p>Fahrzeuge und Ausrüstung werden in Kürze hinzugefügt.</p>
+<h3>Fahrzeuge</h3>
+<p>Unsere Fahrzeugflotte befindet sich noch im Aufbau und wird schrittweise erweitert.</p>
 </div>
 
 <div class="card">
-<i data-lucide="award"></i>
-<h3>Karriere</h3>
-<p>Nach der Grundausbildung folgen Spezialisierungen innerhalb der Division.</p>
+<i data-lucide="building-2"></i>
+<h3>Kaserne</h3>
+<p>Bundeswehr Nürnberg – derzeit im Ausbau für zukünftige Einsätze und Ausbildung.</p>
 </div>
 
 </div>
 
 <!-- INFO -->
 <div class="work">
-<b>Systemmeldung:</b> Inhalte wie Fahrzeuge und Dienstvorschriften werden aktuell vorbereitet.
+<b>Systemmeldung:</b> Diese Division befindet sich noch in Entwicklung. Inhalte werden laufend ergänzt.
 </div>
 
 </main>
