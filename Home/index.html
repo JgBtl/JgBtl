@@ -1,171 +1,170 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JgBtl | Jägerbataillon Division</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JgBtl | Jägerbataillon Division</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
-:root {
-    --bw-olive: #4b533a;
-    --bw-forest: #353b29;
-    --bw-lime: #8da05e;
-    --bw-sand: #d1c7a7;
-    --bw-bg: #1a1c15;
-    --bw-card: #24291e;
-    --text-main: #f5f5f5;
-    --transition: all 0.3s ease;
-}
+    <style>
+        :root {
+            --bw-olive: #4b533a;
+            --bw-forest: #353b29;
+            --bw-lime: #8da05e;
+            --bw-sand: #d1c7a7;
+            --bw-bg: #1a1c15;
+            --bw-card: #24291e;
+            --text-main: #f5f5f5;
+            --transition: all 0.3s ease;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
+        body {
+            background-color: var(--bw-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
 
-body {s
-    background-color: var(--bw-bg);
-    color: var(--text-main);
-    overflow-x: hidden;
-}
+        /* Hintergrund Animation */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(141,160,94,0.12), transparent 60%);
+            animation: bgMove 10s infinite alternate ease-in-out;
+            z-index: -1;
+        }
 
-/* Hintergrund Animation */
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 20%, rgba(141,160,94,0.12), transparent 60%);
-    animation: bgMove 10s infinite alternate ease-in-out;
-    z-index: -1;
-}
+        @keyframes bgMove {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
 
-@keyframes bgMove {
-    from { transform: scale(1); opacity: 0.8; }
-    to { transform: scale(1.1); opacity: 1; }
-}
+        /* NAV */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: var(--bw-forest);
+            border-bottom: 3px solid var(--bw-olive);
+        }
 
-/* NAV */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 8%;
-    background: var(--bw-forest);
-    border-bottom: 3px solid var(--bw-olive);
-}
+        .logo {
+            font-weight: 800;
+            display: flex;
+            gap: 10px;
+            animation: fadeDown 0.8s ease;
+        }
 
-.logo {
-    font-weight: 800;
-    display: flex;
-    gap: 10px;
-    animation: fadeDown 0.8s ease;
-}
+        .logo span { color: var(--bw-lime); }
 
-.logo span { color: var(--bw-lime); }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: 0.3s;
+            position: relative;
+        }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.85rem;
-    opacity: 0.8;
-    transition: 0.3s;
-    position: relative;
-}
+        .nav-links a:hover {
+            color: var(--bw-lime);
+            opacity: 1;
+        }
 
-.nav-links a:hover {
-    color: var(--bw-lime);
-    opacity: 1;
-}
+        /* HERO */
+        .hero {
+            padding: 100px 8%;
+            max-width: 1300px;
+            margin: auto;
+        }
 
-/* HERO */
-.hero {
-    padding: 100px 8%;
-    max-width: 1300px;
-    margin: auto;
-}
+        .status-tag {
+            border: 1px solid var(--bw-lime);
+            color: var(--bw-lime);
+            padding: 8px 16px;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: fadeUp 0.8s ease;
+        }
 
-.status-tag {
-    border: 1px solid var(--bw-lime);
-    color: var(--bw-lime);
-    padding: 8px 16px;
-    display: inline-block;
-    margin-bottom: 20px;
-    animation: fadeUp 0.8s ease;
-}
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            animation: fadeUp 1s ease;
+        }
 
-h1 {
-    font-size: 3rem;
-    text-transform: uppercase;
-    animation: fadeUp 1s ease;
-}
+        .hero p {
+            color: var(--bw-sand);
+            max-width: 600px;
+            margin: 20px 0;
+            animation: fadeUp 1.2s ease;
+        }
 
-.hero p {
-    color: var(--bw-sand);
-    max-width: 600px;
-    margin: 20px 0;
-    animation: fadeUp 1.2s ease;
-}
+        /* CARDS */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
 
-/* CARDS */
-.bento {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 60px;
-}
+        .card {
+            background: var(--bw-card);
+            padding: 30px;
+            border-bottom: 4px solid var(--bw-olive);
+            transition: 0.3s;
+            animation: fadeUp 1s ease;
+        }
 
-.card {
-    background: var(--bw-card);
-    padding: 30px;
-    border-bottom: 4px solid var(--bw-olive);
-    transition: 0.3s;
-    animation: fadeUp 1s ease;
-}
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-bottom-color: var(--bw-lime);
+        }
 
-.card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-bottom-color: var(--bw-lime);
-}
+        .card i {
+            color: var(--bw-lime);
+            transition: 0.3s;
+        }
 
-.card i {
-    color: var(--bw-lime);
-    transition: 0.3s;
-}
+        .card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
 
-.card:hover i {
-    transform: scale(1.2) rotate(5deg);
-}
+        /* INFO */
+        .work {
+            margin-top: 60px;
+            border: 1px dashed var(--bw-olive);
+            padding: 20px;
+            animation: fadeUp 1.3s ease;
+        }
 
-/* INFO */
-.work {
-    margin-top: 60px;
-    border: 1px dashed var(--bw-olive);
-    padding: 20px;
-    animation: fadeUp 1.3s ease;
-}
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* ANIMATIONS */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-</style>
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
@@ -176,54 +175,52 @@ h1 {
         JgBtl<span>.DIVISION</span>
     </div>
 
-<div class="nav-links">
-    <a href="Fahrzeuge/index.html">Fahrzeuge</a>
-    <a href="#">Handbuch</a>
-</div>
+    <div class="nav-links">
+        <a href="Fahrzeuge/index.html">Fahrzeuge</a>
+        <a href="#">Handbuch</a>
+    </div>
+</nav>
 
 <main class="hero">
 
-<div class="status-tag">Status: Ausbildungsdivision (Vorbereitung)</div>
+    <div class="status-tag">Status: Ausbildungsdivision (Vorbereitung)</div>
 
-<h1>Jägerbataillon Division</h1>
+    <h1>Jägerbataillon Division</h1>
 
-<p>
-Unsere Division befindet sich aktuell in der Aufbauphase.  
-Fahrzeuge und interne Systeme werden entwickelt, während das Handbuch als zentrale Grundlage dient.
-</p>
+    <p>
+        Unsere Division befindet sich aktuell in der Aufbauphase.<br>
+        Fahrzeuge und interne Systeme werden entwickelt, während das Handbuch als zentrale Grundlage dient.
+    </p>
 
-<!-- CARDS -->
-<div class="bento">
+    <div class="bento">
+        <div class="card">
+            <i data-lucide="book"></i>
+            <h3>Handbuch</h3>
+            <p>Aktuell in Bearbeitung – enthält bald alle Regeln, Funkcodes und interne Vorschriften.</p>
+        </div>
 
-<div class="card">
-<i data-lucide="book"></i>
-<h3>Handbuch</h3>
-<p>Aktuell in Bearbeitung – enthält bald alle Regeln, Funkcodes und interne Vorschriften.</p>
-</div>
+        <div class="card">
+            <i data-lucide="truck"></i>
+            <h3>Fahrzeuge</h3>
+            <p>Unsere Fahrzeugflotte befindet sich noch im Aufbau und wird schrittweise erweitert.</p>
+        </div>
 
-<div class="card">
-<i data-lucide="truck"></i>
-<h3>Fahrzeuge</h3>
-<p>Unsere Fahrzeugflotte befindet sich noch im Aufbau und wird schrittweise erweitert.</p>
-</div>
+        <div class="card">
+            <i data-lucide="building-2"></i>
+            <h3>Kaserne</h3>
+            <p>Bundeswehr Nürnberg – derzeit im Ausbau für zukünftige Einsätze und Ausbildung.</p>
+        </div>
+    </div>
 
-<div class="card">
-<i data-lucide="building-2"></i>
-<h3>Kaserne</h3>
-<p>Bundeswehr Nürnberg – derzeit im Ausbau für zukünftige Einsätze und Ausbildung.</p>
-</div>
-
-</div>
-
-<!-- INFO -->
-<div class="work">
-<b>Systemmeldung:</b> Diese Division befindet sich noch in Entwicklung. Inhalte werden laufend ergänzt.
-</div>
+    <div class="work">
+        <b>Systemmeldung:</b> Diese Division befindet sich noch in Entwicklung. Inhalte werden laufend ergänzt.
+    </div>
 
 </main>
 
 <script>
-lucide.createIcons();
+    // Initialisiert die Lucide Icons
+    lucide.createIcons();
 </script>
 
 </body>
