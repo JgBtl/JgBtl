@@ -61,7 +61,6 @@
             font-weight: 800;
             display: flex;
             gap: 10px;
-            animation: fadeDown 0.8s ease;
         }
 
         .logo span { color: var(--bw-lime); }
@@ -77,7 +76,6 @@
             font-size: 0.85rem;
             opacity: 0.8;
             transition: 0.3s;
-            position: relative;
         }
 
         .nav-links a:hover {
@@ -97,20 +95,17 @@
             padding: 8px 16px;
             display: inline-block;
             margin-bottom: 20px;
-            animation: fadeUp 0.8s ease;
         }
 
         h1 {
             font-size: 3rem;
             text-transform: uppercase;
-            animation: fadeUp 1s ease;
         }
 
         .hero p {
             color: var(--bw-sand);
             max-width: 600px;
             margin: 20px 0;
-            animation: fadeUp 1.2s ease;
         }
 
         .bento {
@@ -125,38 +120,23 @@
             padding: 30px;
             border-bottom: 4px solid var(--bw-olive);
             transition: 0.3s;
-            animation: fadeUp 1s ease;
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
             border-bottom-color: var(--bw-lime);
         }
 
         .card i {
             color: var(--bw-lime);
-            transition: 0.3s;
-        }
-
-        .card:hover i {
-            transform: scale(1.2) rotate(5deg);
+            margin-bottom: 15px;
+            display: block;
         }
 
         .work {
             margin-top: 60px;
             border: 1px dashed var(--bw-olive);
             padding: 20px;
-            animation: fadeUp 1.3s ease;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -212,7 +192,4 @@
 
 <script>
     lucide.createIcons();
-</script>
-
-</body>
-</html>
+</
