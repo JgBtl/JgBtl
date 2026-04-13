@@ -33,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Hintergrund Animation */
         body::before {
             content: "";
             position: fixed;
@@ -49,7 +48,6 @@
             to { transform: scale(1.1); opacity: 1; }
         }
 
-        /* NAV */
         nav {
             display: flex;
             justify-content: space-between;
@@ -87,7 +85,6 @@
             opacity: 1;
         }
 
-        /* HERO */
         .hero {
             padding: 100px 8%;
             max-width: 1300px;
@@ -116,7 +113,6 @@
             animation: fadeUp 1.2s ease;
         }
 
-        /* CARDS */
         .bento {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -146,7 +142,6 @@
             transform: scale(1.2) rotate(5deg);
         }
 
-        /* INFO */
         .work {
             margin-top: 60px;
             border: 1px dashed var(--bw-olive);
@@ -154,7 +149,6 @@
             animation: fadeUp 1.3s ease;
         }
 
-        /* ANIMATIONS */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -176,7 +170,7 @@
     </div>
 
     <div class="nav-links">
-        <a href="Fahrzeuge/index.html">Fahrzeuge</a>
+        <a href="./Fahrzeuge/">Fahrzeuge</a>
         <a href="#">Handbuch</a>
     </div>
 </nav>
