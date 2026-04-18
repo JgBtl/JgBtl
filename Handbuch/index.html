@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JgBtl | Diensthandbuch</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bw-olive: #4b533a;
+            --bw-forest: #353b29;
+            --bw-lime: #8da05e;
+            --bw-sand: #d1c7a7;
+            --bw-bg: #1a1c15;
+            --bw-card: #24291e;
+            --text-main: #f5f5f5;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bw-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Hintergrund-Effekt wie auf Home */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(141,160,94,0.08), transparent 60%);
+            z-index: -1;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: var(--bw-forest);
+            border-bottom: 3px solid var(--bw-olive);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .logo span { color: var(--bw-lime); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--bw-lime);
+            opacity: 1;
+        }
+
+        .content-wrapper {
+            padding: 60px 8%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header-section {
+            margin-bottom: 50px;
+            border-left: 4px solid var(--bw-lime);
+            padding-left: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: var(--bw-lime);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* Handbuch Grid */
+        .handbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .hb-card {
+            background: var(--bw-card);
+            padding: 30px;
+            border: 1px solid rgba(75, 83, 58, 0.3);
+            transition: var(--transition);
+        }
+
+        .hb-card:hover {
+            border-color: var(--bw-lime);
+            background: rgba(36, 41, 30, 0.8);
+        }
+
+        .hb-card i {
+            color: var(--bw-lime);
+            margin-bottom: 15px;
+        }
+
+        .hb-card h2 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hb-card ul {
+            list-style: none;
+        }
+
+        .hb-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+            color: var(--bw-sand);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hb-card ul li span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .code-box {
+            background: #12140f;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--bw-lime);
+            margin-top: 10px;
+        }
+
+        .badge {
+            background: var(--bw-olive);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .handbook-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        <i data-lucide="shield"></i>
+        JgBtl<span>.DIVISION</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="/JgBtl/Fahrzeuge/">Fahrzeuge</a>
+        <a href="#" style="color: var(--bw-lime); opacity: 1;">Handbuch</a>
+    </div>
+</nav>
+
+<div class="content-wrapper">
+    <div class="header-section">
+        <p class="subtitle">Zentrale Dienstvorschrift (ZDV)</p>
+        <h1>Diensthandbuch v1.0</h1>
+        <p>Verhalten, Funkwesen und Standardprozeduren für den Dienst im Jägerbataillon.</p>
+    </div>
+
+    <div class="handbook-grid">
+        <div class="hb-card">
+            <i data-lucide="gavel"></i>
+            <h2>§1 Allgemeines Verhalten</h2>
+            <ul>
+                <li>Disziplin & Respekt <span>Pflicht</span></li>
+                <li>Befehlskette (High to Low) <span>Einhalten</span></li>
+                <li>Außenwirkung (RP-Ebene) <span>Professionell</span></li>
+                <li>Ausrüstung im Dienst <span>Vollständig</span></li>
+            </ul>
+        </div>
+
+        <div class="hb-card">
+            <i data-lucide="radio"></i>
+            <h2>§2 Funkwesen (Status)</h2>
+            <div class="code-box">
+                Status 1: Einsatzbereit per Funk<br>
+                Status 2: Einsatzbereit auf Wache<br>
+                Status 3: Anfahrt zum Einsatz<br>
+                Status 4: Einsatz übernommen<br>
+                Status 6: Außer Dienst (Ende)
+            </div>
+        </div>
+
+        <div class="hb-card">
+            <i data-lucide="users-2"></i>
+            <h2>§3 Formationen</h2>
+            <ul>
+                <li>Linie <span>Sicherung</span></li>
+                <li>Kolonne <span>Marsch</span></li>
+                <li>Keil <span>Vorrücken</span></li>
+                <li>Rundum-Sicherung <span>Halt</span></li>
+            </ul>
+        </div>
+
+        <div class="hb-card">
+            <i data-lucide="message-square-code"></i>
+            <h2>§4 Meldewesen</h2>
+            <p style="font-size: 0.85rem; color: var(--bw-sand); margin-bottom: 10px;">Bei Meldung an Vorgesetzte gilt:</p>
+            <div class="code-box">
+                "Herr [Rang], melde mich wie befohlen!"<br>
+                "Frage: [Anliegen]?"<br>
+                "Verstanden / Führe aus!"
+            </div>
+        </div>
+
+        <div class="hb-card">
+            <i data-lucide="crosshair"></i>
+            <h2>§5 Waffengebrauch</h2>
+            <ul>
+                <li>Sicherung der Waffe <span>Innerorts</span></li>
+                <li>Warnschuss <span>Optional</span></li>
+                <li>Feuerfreigabe <span>Durch Führung</span></li>
+                <li>Notwehr <span>Immer zulässig</span></li>
+            </ul>
+        </div>
+
+        <div class="hb-card">
+            <i data-lucide="map-pin"></i>
+            <h2>§6 Einsatzorte</h2>
+            <ul>
+                <li>Kaserne Nürnberg <span class="badge">HQ</span></li>
+                <li>Übungsplatz <span class="badge">Training</span></li>
+                <li>Waffenkammer <span class="badge">Ausrüstung</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
