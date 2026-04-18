@@ -1,180 +1,293 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JgBtl | Diensthandbuch </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JgBtl | Diensthandbuch</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
-:root {
-    --bw-olive: #4b533a;
-    --bw-forest: #353b29;
-    --bw-lime: #8da05e;
-    --bw-sand: #d1c7a7;
-    --bw-bg: #1a1c15;
-    --bw-card: #24291e;
-    --text-main: #f5f5f5;
-    --transition: all 0.3s ease;
-}
+    <style>
+        :root {
+            --bw-olive: #4b533a;
+            --bw-forest: #353b29;
+            --bw-lime: #8da05e;
+            --bw-sand: #d1c7a7;
+            --bw-bg: #0f110c;
+            --bw-card: #1a1f16;
+            --text-main: #f5f5f5;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif;}
-body{background:var(--bw-bg);color:var(--text-main);line-height:1.6;}
-body::before{
-    content:"";position:fixed;width:100%;height:100%;
-    background:radial-gradient(circle at 80% 20%,rgba(141,160,94,0.08),transparent 60%);
-    z-index:-1;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-nav{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:20px 8%;background:var(--bw-forest);
-    border-bottom:3px solid var(--bw-olive);
-    position:sticky;top:0;z-index:100;
-}
-.logo{font-weight:800;display:flex;gap:10px;align-items:center;}
-.logo span{color:var(--bw-lime);}
-.nav-links{display:flex;gap:30px;}
-.nav-links a{color:white;text-decoration:none;font-size:0.85rem;opacity:0.8;}
-.nav-links a:hover{color:var(--bw-lime);opacity:1;}
+        body {
+            background-color: var(--bw-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-.content-wrapper{padding:60px 8%;max-width:1200px;margin:auto;}
-.header-section{margin-bottom:50px;border-left:4px solid var(--bw-lime);padding-left:20px;}
-h1{text-transform:uppercase;letter-spacing:2px;font-size:2.5rem;}
-.subtitle{color:var(--bw-lime);font-weight:600;text-transform:uppercase;font-size:0.9rem;}
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(141,160,94,0.08), transparent 60%);
+            z-index: -1;
+        }
 
-.handbook-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:25px;}
-.hb-card{
-    background:var(--bw-card);
-    padding:30px;
-    border:1px solid rgba(75,83,58,0.3);
-    transition:var(--transition);
-}
-.hb-card:hover{border-color:var(--bw-lime);background:rgba(36,41,30,0.8);}
-.hb-card i{color:var(--bw-lime);margin-bottom:15px;}
-.hb-card h2{margin-bottom:15px;display:flex;gap:10px;align-items:center;}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(53, 59, 41, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(141,160,94,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-.code-box{
-    background:#12140f;padding:15px;border-radius:4px;
-    font-family:monospace;font-size:0.85rem;color:var(--bw-lime);
-    margin-top:10px;
-}
-.badge{background:var(--bw-olive);padding:2px 8px;border-radius:4px;font-size:0.75rem;}
+        .logo {
+            font-weight: 800;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
 
-table{width:100%;border-collapse:collapse;margin-top:10px;}
-td{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
-td:last-child{text-align:right;color:var(--bw-sand);}
+        .logo span { color: var(--bw-lime); }
 
-@media(max-width:768px){.handbook-grid{grid-template-columns:1fr;}}
-</style>
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--bw-lime);
+            opacity: 1;
+        }
+
+        .content-wrapper {
+            padding: 60px 8%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header-section {
+            margin-bottom: 50px;
+            border-left: 4px solid var(--bw-lime);
+            padding-left: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--bw-lime);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .handbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .hb-card {
+            background: var(--bw-card);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: var(--transition);
+        }
+
+        .hb-card:hover {
+            border-color: rgba(141,160,94,0.4);
+            background: #222a1d;
+            transform: translateY(-5px);
+        }
+
+        .hb-card i {
+            color: var(--bw-lime);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hb-card h2 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .code-box {
+            background: #0a0c08;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--bw-lime);
+            border: 1px solid rgba(141,160,94,0.1);
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+
+        td:last-child {
+            text-align: right;
+            color: var(--bw-lime);
+            font-weight: 600;
+        }
+
+        .work-notice {
+            margin-top: 60px;
+            padding: 20px;
+            border: 1px dashed var(--bw-olive);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--bw-sand);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .handbook-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
+
 <nav>
-<div class="logo"><i data-lucide="shield"></i> JgBtl<span>.DIVISION</span></div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="/JgBtl/Fahrzeuge/">Fahrzeuge</a>
-</div>
+    <div class="logo">
+        <i data-lucide="shield"></i> 
+        JgBtl<span>.DIVISION</span>
+    </div>
+    <div class="nav-links">
+        <a href="../Home/">Home</a>
+        <a href="../Fahrzeuge/">Fahrzeuge</a>
+        <a href="#" style="color:var(--bw-lime); opacity:1;">Handbuch</a>
+    </div>
 </nav>
 
 <div class="content-wrapper">
+    <div class="header-section">
+        <p class="subtitle">Zentrale Dienstvorschrift (ZDV)</p>
+        <h1>Diensthandbuch</h1>
+        <p>Strikte Ordnung. Klare Befehle. Keine Diskussion im Einsatz.</p>
+    </div>
 
-<div class="header-section">
-<p class="subtitle"> Dienstvorschrift(DV)</p>
-<h1>Diensthandbuch </h1>
-<p>Strikte Ordnung. Klare Befehle. Keine Diskussion im Einsatz.</p>
-</div>
+    <div class="handbook-grid">
+        <div class="hb-card">
+            <i data-lucide="shield-alert" size="28"></i>
+            <h2>§1 Grunddisziplin</h2>
+            <table>
+                <tr><td>Respekt ggü. Vorgesetzten</td><td>PFLICHT</td></tr>
+                <tr><td>Befehlsausführung</td><td>SOFORT</td></tr>
+                <tr><td>Eigenmächtigkeit</td><td>VERBOTEN</td></tr>
+                <tr><td>RP-Realismus</td><td>STRIKT</td></tr>
+            </table>
+        </div>
 
-<div class="handbook-grid">
+        <div class="hb-card">
+            <i data-lucide="radio" size="28"></i>
+            <h2>§2 Funkstatus (NEU)</h2>
+            <div class="code-box">
+                STATUS 1: Einsatzbereit / Funk<br>
+                STATUS 2: Wache aktiv<br>
+                STATUS 3: Anfahrt / Bewegung<br>
+                STATUS 4: Einsatz gebunden<br>
+                STATUS 5: Verletzung / Ausfall<br>
+                STATUS 6: Dienstende
+            </div>
+        </div>
 
-<div class="hb-card">
-<i data-lucide="shield-alert"></i>
-<h2>§1 Grunddisziplin</h2>
-<ul>
-<li>Respekt gegenüber Ranghöheren <span>Pflicht</span></li>
-<li>Befehl = Ausführung <span>Sofort</span></li>
-<li>Keine Eigeninterpretation im Einsatz <span>Verboten</span></li>
-<li>RP-Realismus strikt <span>Erwartet</span></li>
-</ul>
-</div>
+        <div class="hb-card">
+            <i data-lucide="activity" size="28"></i>
+            <h2>§3 Disziplinstatus</h2>
+            <div class="code-box">
+                DS 1: Voll diszipliniert<br>
+                DS 2: Verwarnung aktiv<br>
+                DS 3: Unter Beobachtung<br>
+                DS 4: Letzte Warnung<br>
+                DS 5: Ausschlussverfahren
+            </div>
+        </div>
 
-<div class="hb-card">
-<i data-lucide="radio"></i>
-<h2>§2 Funkstatus (NEU)</h2>
-<div class="code-box">
-FUNK 1: Einsatzbereit / verfügbar<br>
-FUNK 2: Standby / Wache aktiv<br>
-FUNK 3: Anfahrt / Bewegung<br>
-FUNK 4: Einsatz gebunden<br>
-FUNK 5: Verletzung / eingeschränkt<br>
-FUNK 6: Dienstende / offline
-</div>
-</div>
+        <div class="hb-card">
+            <i data-lucide="alert-triangle" size="28"></i>
+            <h2>§4 Konsequenzen</h2>
+            <table>
+                <tr><td>Befehlsverweigerung</td><td>DS +1</td></tr>
+                <tr><td>Funkmissbrauch</td><td>TIMEOUT</td></tr>
+                <tr><td>Respektlosigkeit</td><td>ABMAHNUNG</td></tr>
+                <tr><td>RP-Bruch</td><td>KICK/BAN</td></tr>
+            </table>
+        </div>
 
-<div class="hb-card">
-<i data-lucide="activity"></i>
-<h2>§3 Disziplinstatus</h2>
-<div class="code-box">
-DS 1: Voll diszipliniert
-DS 2: Verwarnung aktiv
-DS 3: Beobachtung durch Führung
-DS 4: Dienstgespräch notwendig
-DS 5: Ausschluss Risiko
-</div>
-</div>
+        <div class="hb-card">
+            <i data-lucide="crosshair" size="28"></i>
+            <h2>§5 Einsatzregeln</h2>
+            <table>
+                <tr><td>Feuerfreigabe</td><td>DURCH FÜHRUNG</td></tr>
+                <tr><td>Deckung halten</td><td>IMMER</td></tr>
+                <tr><td>Zivilschutz</td><td>PRIORITÄT</td></tr>
+                <tr><td>Funkdisziplin</td><td>SAUBER</td></tr>
+            </table>
+        </div>
 
+        <div class="hb-card">
+            <i data-lucide="radio-tower" size="28"></i>
+            <h2>§6 Funkprotokoll</h2>
+            <div class="code-box">
+                "Hier Alpha, Status 3"<br>
+                "Verstanden, kommen"<br>
+                "Feindkontakt, Lage kritisch"<br>
+                "Position halten, Ende"
+            </div>
+        </div>
+    </div>
 
-<div class="hb-card">
-<i data-lucide="alert-triangle"></i>
-<h2>§4 Strafen / Konsequenzen</h2>
-<ul>
-<li>Missachtung Befehl <span>DS +1</span></li>
-<li>Funkmissbrauch <span>Timeout</span></li>
-<li>Respektlosigkeit <span>Verwarnung</span></li>
-<li>RP Bruch <span>Kick möglich</span></li>
-</ul>
-</div>
-
-<div class="hb-card">
-<i data-lucide="crosshair"></i>
-<h2>§5 Einsatzregeln</h2>
-<ul>
-<li>Feuer nur auf Befehl <span>Ja</span></li>
-<li>Deckung immer halten <span>Pflicht</span></li>
-<li>Zivilen Schutz priorisieren <span>Höchste Priorität</span></li>
-<li>Kommunikation sauber halten <span>Immer</span></li>
-</ul>
-</div>
-
-<div class="hb-card">
-<i data-lucide="radio-tower"></i>
-<h2>§6 Funkprotokoll</h2>
-<div class="code-box">
-"Hier Einheit Alpha, Status 3"
-"Verstanden, weiter"
-"Feindkontakt, Lage unklar"
-"Position halten bis Befehl"
-</div>
-</div>
-
-<div class="hb-card">
-<i data-lucide="map-pin"></i>
-<h2>§7 Strukturpunkte</h2>
-<ul>
-<li>Kaserne <span>HQ</span></li>
-<li>Übungsplatz <span>Training</span></li>
-<li>Einsatzgebiet <span>Operation</span></li>
-</ul>
-</div>
-
-</div>
+    <div class="work-notice">
+        <b>Systemmeldung:</b> Dieses Handbuch ist rechtlich bindend für alle Mitglieder des Jägerbataillons. Änderungen werden im Protokoll vermerkt.
+    </div>
 </div>
 
 <script>
-lucide.createIcons();
+    lucide.createIcons();
 </script>
 
 </body>
