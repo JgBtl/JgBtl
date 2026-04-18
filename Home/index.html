@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JgBtl | Jägerbataillon </title>
+    <title>JgBtl | Jägerbataillon</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -31,6 +31,7 @@
             background-color: var(--bw-bg);
             color: var(--text-main);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         body::before {
@@ -55,12 +56,16 @@
             padding: 20px 8%;
             background: var(--bw-forest);
             border-bottom: 3px solid var(--bw-olive);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
             font-weight: 800;
             display: flex;
             gap: 10px;
+            align-items: center;
         }
 
         .logo span { color: var(--bw-lime); }
@@ -75,7 +80,7 @@
             text-decoration: none;
             font-size: 0.85rem;
             opacity: 0.8;
-            transition: 0.3s;
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
@@ -95,17 +100,22 @@
             padding: 8px 16px;
             display: inline-block;
             margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             text-transform: uppercase;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
         .hero p {
             color: var(--bw-sand);
-            max-width: 600px;
-            margin: 20px 0;
+            max-width: 650px;
+            font-size: 1.1rem;
         }
 
         .bento {
@@ -117,26 +127,62 @@
 
         .card {
             background: var(--bw-card);
-            padding: 30px;
+            padding: 35px;
             border-bottom: 4px solid var(--bw-olive);
-            transition: 0.3s;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-bottom-color: var(--bw-lime);
+            box-shadow: 0 10px 30px rgba(141, 160, 94, 0.1);
+        }
+
+        .card h3 {
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .card i {
             color: var(--bw-lime);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: block;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: rgba(245, 245, 245, 0.8);
+            flex-grow: 1;
+        }
+
+        /* Fortschrittsbalken */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(75, 83, 58, 0.3);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--bw-lime);
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
         }
 
         .work {
             margin-top: 60px;
             border: 1px dashed var(--bw-olive);
-            padding: 20px;
+            padding: 25px;
+            background: rgba(75, 83, 58, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -150,8 +196,8 @@
     </div>
 
     <div class="nav-links">
-       <a href="/JgBtl/Fahrzeuge/">Fahrzeuge</a>
-        <a href="#">Handbuch</a>
+        <a href="/JgBtl/Fahrzeuge/">Fahrzeuge</a>
+        <a href="#" style="color: var(--bw-lime); opacity: 1;">Handbuch</a>
     </div>
 </nav>
     
@@ -161,32 +207,51 @@
     <h1>Jägerbataillon Division</h1>
 
     <p>
-        Unsere Division befindet sich aktuell in der Aufbauphase.<br>
+        Unsere Division befindet sich aktuell in der Aufbauphase. 
         Fahrzeuge und interne Systeme werden entwickelt, während das Handbuch als zentrale Grundlage dient.
     </p>
 
     <div class="bento">
         <div class="card">
-            <i data-lucide="book"></i>
+            <i data-lucide="book-open-check"></i>
             <h3>Handbuch</h3>
-            <p>Aktuell in Bearbeitung  enthält bald alle Regeln, Funkcodes und interne Vorschriften.</p>
+            <p>Die finale Fassung mit allen Regeln und Funkcodes wird im Laufe des heutigen Tages veröffentlicht.</p>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 90%;"></div>
+            </div>
         </div>
 
         <div class="card">
             <i data-lucide="truck"></i>
             <h3>Fahrzeuge</h3>
-            <p>Unsere Fahrzeugflotte befindet sich noch im Aufbau und wird schrittweise erweitert.</p>
+            <p>Unsere Fahrzeugflotte befindet sich im Aufbau und wird schrittweise für den Dienstbetrieb freigegeben.</p>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 45%;"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <i data-lucide="users"></i>
+            <h3>Führungshierarchie</h3>
+            <p>Die Struktur der Division und die Rangordnung werden in Kürze hier implementiert.</p>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 15%;"></div>
+            </div>
         </div>
 
         <div class="card">
             <i data-lucide="building-2"></i>
             <h3>Kaserne</h3>
-            <p>Bundeswehr Nürnberg  derzeit im Ausbau für zukünftige Einsätze und Ausbildung.</p>
+            <p>Bundeswehr Nürnberg: Derzeit im Ausbau für zukünftige Einsätze und spezialisierte Ausbildung.</p>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 30%;"></div>
+            </div>
         </div>
     </div>
 
     <div class="work">
-        <b>Systemmeldung:</b> Diese Division befindet sich noch in Entwicklung. Inhalte werden laufend ergänzt.
+        <b>Systemmeldung:</b> Diese Division befindet sich noch in Entwicklung. Inhalte werden laufend ergänzt. 
+        Besuchen Sie das Handbuch später erneut für das heutige Update.
     </div>
 </main>
 
