@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JgBtl | Jägerbataillon</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -14,10 +14,10 @@
             --bw-forest: #353b29;
             --bw-lime: #8da05e;
             --bw-sand: #d1c7a7;
-            --bw-bg: #1a1c15;
-            --bw-card: #24291e;
+            --bw-bg: #0f110c; /* Etwas dunkler für mehr Tiefe */
+            --bw-card: #1a1f16;
             --text-main: #f5f5f5;
-            --transition: all 0.3s ease;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -34,28 +34,26 @@
             line-height: 1.6;
         }
 
+        /* Subtiler animierter Hintergrund */
         body::before {
             content: "";
             position: fixed;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 20%, rgba(141,160,94,0.12), transparent 60%);
-            animation: bgMove 10s infinite alternate ease-in-out;
+            background: radial-gradient(circle at 10% 10%, rgba(141,160,94,0.08), transparent 50%),
+                        radial-gradient(circle at 90% 90%, rgba(75,83,58,0.1), transparent 50%);
             z-index: -1;
-        }
-
-        @keyframes bgMove {
-            from { transform: scale(1); opacity: 0.8; }
-            to { transform: scale(1.1); opacity: 1; }
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background: var(--bw-forest);
-            border-bottom: 3px solid var(--bw-olive);
+            padding: 15px 8%;
+            background: rgba(53, 59, 41, 0.7);
+            backdrop-filter: blur(12px); /* Moderner Glass-Look */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(141,160,94,0.2);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -63,23 +61,26 @@
 
         .logo {
             font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
         }
 
-        .logo span { color: var(--bw-lime); }
+        .logo span { color: var(--bw-lime); opacity: 0.9; }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 0.85rem;
-            opacity: 0.8;
+            font-weight: 500;
+            opacity: 0.7;
             transition: var(--transition);
         }
 
@@ -89,100 +90,123 @@
         }
 
         .hero {
-            padding: 100px 8%;
-            max-width: 1300px;
+            padding: 80px 8%;
+            max-width: 1400px;
             margin: auto;
         }
 
         .status-tag {
-            border: 1px solid var(--bw-lime);
+            background: rgba(141,160,94,0.1);
+            border: 1px solid rgba(141,160,94,0.3);
             color: var(--bw-lime);
-            padding: 8px 16px;
-            display: inline-block;
-            margin-bottom: 20px;
+            padding: 6px 14px;
+            border-radius: 100px; /* Pill-Shape ist moderner */
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             text-transform: uppercase;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1;
+            letter-spacing: -1px;
             margin-bottom: 20px;
         }
 
         .hero p {
             color: var(--bw-sand);
-            max-width: 650px;
+            max-width: 600px;
             font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         .bento {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
             margin-top: 60px;
         }
 
         .card {
             background: var(--bw-card);
-            padding: 35px;
-            border-bottom: 4px solid var(--bw-olive);
+            padding: 40px;
+            border-radius: 16px; /* Abgerundet wirkt wertiger */
+            border: 1px solid rgba(255,255,255,0.03);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            border-bottom-color: var(--bw-lime);
-            box-shadow: 0 10px 30px rgba(141, 160, 94, 0.1);
+            transform: translateY(-8px);
+            background: #222a1d;
+            border-color: rgba(141,160,94,0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .card h3 {
             font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
 
         .card i {
             color: var(--bw-lime);
-            margin-bottom: 20px;
-            display: block;
+            margin-bottom: 24px;
+            opacity: 0.9;
         }
 
         .card p {
             font-size: 0.95rem;
-            color: rgba(245, 245, 245, 0.8);
+            color: var(--bw-sand);
+            line-height: 1.6;
             flex-grow: 1;
         }
 
-        /* Fortschrittsbalken */
+        /* Fortschrittsbalken Modern */
         .progress-container {
             width: 100%;
-            height: 6px;
-            background: rgba(75, 83, 58, 0.3);
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            margin-top: 20px;
-            overflow: hidden;
+            margin-top: 30px;
         }
 
         .progress-bar {
             height: 100%;
-            background: var(--bw-lime);
+            background: linear-gradient(90deg, var(--bw-olive), var(--bw-lime));
             border-radius: 10px;
-            transition: width 1s ease-in-out;
+            box-shadow: 0 0 10px rgba(141,160,94,0.3);
         }
 
         .work {
-            margin-top: 60px;
-            border: 1px dashed var(--bw-olive);
-            padding: 25px;
-            background: rgba(75, 83, 58, 0.05);
+            margin-top: 80px;
+            border-radius: 12px;
+            background: rgba(75, 83, 58, 0.1);
+            border: 1px solid rgba(75, 83, 58, 0.2);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--bw-sand);
+            font-size: 0.9rem;
         }
+
+        .work b { color: var(--bw-lime); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .hero { padding-top: 40px; }
         }
     </style>
 </head>
@@ -191,58 +215,62 @@
 
 <nav>
     <div class="logo">
-        <i data-lucide="shield"></i>
+        <i data-lucide="shield-check" size="24"></i>
         JgBtl<span>.DIVISION</span>
     </div>
 
     <div class="nav-links">
+        <a href="/">Home</a>
         <a href="/JgBtl/Fahrzeuge/">Fahrzeuge</a>
-        <a href="#" style="color: var(--bw-lime); opacity: 1;">Handbuch</a>
+        <a href="/JgBtl/Handbuch/">Handbuch</a>
     </div>
 </nav>
     
 <main class="hero">
-    <div class="status-tag">Status: Ausbildungsdivision (Vorbereitung)</div>
+    <div class="status-tag">
+        <span style="width: 8px; height: 8px; background: var(--bw-lime); border-radius: 50%; display: inline-block;"></span>
+        System: Aufbauphase
+    </div>
 
-    <h1>Jägerbataillon Division</h1>
+    <h1>Jägerbataillon<br>Division</h1>
 
     <p>
-        Unsere Division befindet sich aktuell in der Aufbauphase. 
-        Fahrzeuge und interne Systeme werden entwickelt, während das Handbuch als zentrale Grundlage dient.
+        Präzision. Disziplin. Kameradschaft.<br>
+        Wir entwickeln aktuell unsere Infrastruktur, Fahrzeuge und das zentrale Regelwerk für den aktiven Dienst.
     </p>
 
     <div class="bento">
-        <div class="card">
-            <i data-lucide="book-open-check"></i>
-            <h3>Handbuch</h3>
-            <p>Die finale Fassung mit allen Regeln und Funkcodes wird im Laufe des heutigen Tages veröffentlicht.</p>
+        <div class="card" onclick="window.location.href='/JgBtl/Handbuch/'" style="cursor: pointer;">
+            <i data-lucide="book-marked" size="32"></i>
+            <h3>Diensthandbuch</h3>
+            <p>Das Kernstück unserer Ausbildung. Alle Regeln, Funkcodes und Standard-Prozeduren kompakt zusammengefasst.</p>
             <div class="progress-container">
-                <div class="progress-bar" style="width: 90%;"></div>
+                <div class="progress-bar" style="width: 95%;"></div>
             </div>
         </div>
 
         <div class="card">
-            <i data-lucide="truck"></i>
-            <h3>Fahrzeuge</h3>
-            <p>Unsere Fahrzeugflotte befindet sich im Aufbau und wird schrittweise für den Dienstbetrieb freigegeben.</p>
+            <i data-lucide="component" size="32"></i>
+            <h3>Fuhrpark</h3>
+            <p>Instandsetzung und Konfiguration unserer Fahrzeugflotte. Schrittweise Erweiterung des Bestands.</p>
             <div class="progress-container">
                 <div class="progress-bar" style="width: 45%;"></div>
             </div>
         </div>
 
         <div class="card">
-            <i data-lucide="users"></i>
-            <h3>Führungshierarchie</h3>
-            <p>Die Struktur der Division und die Rangordnung werden in Kürze hier implementiert.</p>
+            <i data-lucide="bar-chart-big" size="32"></i>
+            <h3>Hierarchie</h3>
+            <p>Die Struktur der Division. Erfassung der Dienstgrade und Zuweisung der Verantwortungsbereiche.</p>
             <div class="progress-container">
-                <div class="progress-bar" style="width: 15%;"></div>
+                <div class="progress-bar" style="width: 20%;"></div>
             </div>
         </div>
 
         <div class="card">
-            <i data-lucide="building-2"></i>
-            <h3>Kaserne</h3>
-            <p>Bundeswehr Nürnberg: Derzeit im Ausbau für zukünftige Einsätze und spezialisierte Ausbildung.</p>
+            <i data-lucide="map" size="32"></i>
+            <h3>Einsatzort</h3>
+            <p>Bundeswehr Nürnberg. Optimierung der Kasernenanlage für Training und Einsatzbereitschaft.</p>
             <div class="progress-container">
                 <div class="progress-bar" style="width: 30%;"></div>
             </div>
@@ -250,12 +278,13 @@
     </div>
 
     <div class="work">
-        <b>Systemmeldung:</b> Diese Division befindet sich noch in Entwicklung. Inhalte werden laufend ergänzt. 
-        Besuchen Sie das Handbuch später erneut für das heutige Update.
+        <i data-lucide="info" size="18" style="color: var(--bw-lime);"></i>
+        <span><b>Meldung:</b> Die Inhalte dieser Plattform werden täglich aktualisiert. Bitte prüfen Sie regelmäßig das Handbuch auf Updates.</span>
     </div>
 </main>
 
 <script>
+    // Initialisiert die Icons
     lucide.createIcons();
 </script>
 
