@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JgBtl | Jägerbataillon Division</title>
+    <title>ZDV 1/0 | Dienstvorschrift JgBtl</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -14,10 +14,11 @@
             --bw-olive: #4b533a;
             --bw-bg: #0f110c;
             --bw-card: #161a12;
-            --bw-border: rgba(141, 160, 94, 0.2);
+            --bw-border: rgba(141, 160, 94, 0.3);
             --bw-sand: #d1c7a7;
             --text-main: #f5f5f5;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --accent-red: #8b2626; /* Für Warnungen/Strenge */
+            --transition: all 0.3s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,185 +27,161 @@
             background-color: var(--bw-bg);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.5;
-            overflow-x: hidden;
-            /* Subtile taktische Textur */
-            background-image: radial-gradient(var(--bw-olive) 0.5px, transparent 0.5px);
-            background-size: 30px 30px;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(15, 17, 12, 0.98), rgba(15, 17, 12, 0.98)),
+                              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Ambient Glow Background */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at 10% 10%, rgba(141,160,94,0.05), transparent 50%),
-                        radial-gradient(circle at 90% 90%, rgba(75,83,58,0.08), transparent 50%);
-            z-index: -1;
-        }
-
-        /* Nav aus Skript 2 (Modern Glass) */
+        /* Nav ohne Handbuch-Link */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 8%;
-            background: rgba(20, 22, 18, 0.8);
+            background: rgba(20, 22, 18, 0.95);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--bw-border);
+            border-bottom: 2px solid var(--bw-olive);
             position: sticky;
-            top: 0; z-index: 100;
+            top: 0; z-index: 1000;
         }
 
         .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
-            display: flex;
-            gap: 12px;
-            align-items: center;
+            font-weight: 800; font-size: 1.2rem; display: flex; gap: 12px; align-items: center;
         }
-        .logo span { color: var(--bw-lime); opacity: 0.9; }
+        .logo span { color: var(--bw-lime); }
 
         .nav-links { display: flex; gap: 25px; }
         .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            opacity: 0.7;
-            transition: var(--transition);
+            color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; opacity: 0.7; transition: var(--transition);
         }
         .nav-links a:hover { color: var(--bw-lime); opacity: 1; }
 
-        .hero { padding: 60px 8%; max-width: 1300px; margin: auto; }
+        /* Handbuch Layout */
+        .handbook-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+            max-width: 1600px;
+            margin: auto;
+        }
 
-        .status-tag {
-            background: rgba(141,160,94,0.1);
-            border: 1px solid var(--bw-border);
-            color: var(--bw-lime);
-            padding: 6px 14px;
-            border-radius: 100px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            font-weight: 700;
+        /* Sidebar Navigation */
+        .sidebar {
+            border-right: 1px solid var(--bw-border);
+            padding: 40px 20px;
+            background: rgba(22, 26, 18, 0.5);
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .sidebar h5 {
+            font-family: 'Oswald'; color: var(--bw-lime);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+            font-size: 0.9rem; border-bottom: 1px solid var(--bw-olive); padding-bottom: 5px;
+        }
+
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 12px; }
+        .sidebar a {
+            text-decoration: none; color: var(--bw-sand); font-size: 0.85rem;
+            transition: var(--transition); display: block; padding: 5px 10px;
+            border-radius: 4px; border-left: 2px solid transparent;
+        }
+        .sidebar a:hover { background: rgba(141, 160, 94, 0.1); border-left: 2px solid var(--bw-lime); color: white; }
+
+        /* Content Area */
+        .content { padding: 60px 8%; max-width: 900px; }
+
+        .doc-header {
+            border-bottom: 3px solid var(--bw-lime);
+            margin-bottom: 50px; padding-bottom: 20px;
+        }
+
+        .doc-header span { color: var(--bw-lime); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; }
+        .doc-header h1 { font-family: 'Oswald'; font-size: 3rem; margin-top: 10px; }
+
+        /* Section Styling */
+        section { margin-bottom: 80px; scroll-margin-top: 100px; }
+        h2 { 
+            font-family: 'Oswald'; text-transform: uppercase; font-size: 1.8rem; 
+            margin-bottom: 25px; color: var(--bw-lime); display: flex; align-items: center; gap: 15px;
+        }
+        h2::before { content: "§"; font-size: 1.2rem; opacity: 0.5; }
+
+        .paragraph {
+            background: var(--bw-card);
+            padding: 25px; border-left: 4px solid var(--bw-olive);
+            margin-bottom: 20px; border-radius: 0 8px 8px 0;
+        }
+
+        .para-num { font-weight: 800; color: var(--bw-lime); margin-right: 10px; }
+
+        /* Warn-Boxen */
+        .strict-notice {
+            background: rgba(139, 38, 38, 0.1);
+            border: 1px solid var(--accent-red);
+            padding: 20px; border-radius: 8px; margin: 30px 0;
+            display: flex; gap: 15px; align-items: flex-start;
+        }
+        .strict-notice i { color: var(--accent-red); }
+        .strict-notice b { color: var(--accent-red); text-transform: uppercase; display: block; margin-bottom: 5px; }
+
+        /* Listen */
+        .doc-list { list-style: none; margin-left: 20px; }
+        .doc-list li { position: relative; padding-left: 25px; margin-bottom: 10px; font-size: 0.95rem; }
+        .doc-list li::before {
+            content: ""; position: absolute; left: 0; top: 12px;
+            width: 12px; height: 2px; background: var(--bw-lime);
+        }
+
+        /* Moderner Grid Footer */
+        footer {
+            margin-top: 100px;
+            padding: 40px 8%;
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 1px solid var(--bw-olive);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
             font-size: 0.75rem;
             text-transform: uppercase;
-        }
-
-        h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 15px;
-        }
-
-        .hero-desc {
-            color: var(--bw-sand);
-            max-width: 600px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-
-        /* Kompaktes Bento Grid aus Skript 1 */
-        .bento {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .card {
-            background: var(--bw-card);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: var(--transition);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: #1d2218;
-            border-color: var(--bw-lime);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-        }
-
-        .card i { color: var(--bw-lime); margin-bottom: 16px; }
-        .card h3 { font-family: 'Oswald'; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 8px; }
-        .card p { font-size: 0.85rem; color: var(--bw-sand); opacity: 0.8; flex-grow: 1; margin-bottom: 20px; }
-
-        /* Fortschrittsbalken Modern */
-        .progress-container {
-            width: 100%; height: 3px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        .progress-bar {
-            height: 100%;
-            background: var(--bw-lime);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(141,160,94,0.4);
-        }
-
-        /* Das Infobox-Buch */
-        .info-book {
-            background: var(--bw-olive);
-            border: 1px solid var(--bw-lime);
-            padding: 24px;
-            border-radius: 12px;
-            color: white;
-            position: relative;
-            grid-column: span 1;
-        }
-        .info-book h4 { 
-            font-family: 'Oswald'; 
-            text-transform: uppercase; 
-            margin-bottom: 12px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 8px;
-        }
-        .info-book p { font-size: 0.85rem; line-height: 1.4; color: #f0f0f0; }
-        .info-book .page-num { position: absolute; bottom: 12px; right: 15px; font-family: 'Oswald'; opacity: 0.4; font-size: 0.7rem; }
-
-        .work-banner {
-            margin-top: 40px;
-            padding: 15px 25px;
-            background: rgba(141, 160, 94, 0.05);
-            border: 1px solid var(--bw-border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center; gap: 15px;
-            font-size: 0.85rem;
-            color: var(--bw-sand);
-        }
-
-        footer {
-            margin-top: 60px;
-            padding: 20px 8%;
-            border-top: 1px solid var(--bw-border);
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            opacity: 0.5;
             letter-spacing: 1px;
         }
 
-        @media (max-width: 1024px) { .bento { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { 
-            .bento { grid-template-columns: 1fr; } 
-            .nav-links { display: none; }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-label {
+            color: var(--bw-lime);
+            font-weight: 800;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .footer-data {
+            color: var(--bw-sand);
+            opacity: 0.8;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .footer-copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(141, 160, 94, 0.1);
+            opacity: 0.4;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 1024px) {
+            .handbook-container { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
         }
     </style>
 </head>
@@ -219,83 +196,131 @@
     <div class="nav-links">
         <a href="/">Home</a>
         <a href="/JgBtl/Fahrzeuge/">Fuhrpark</a>
-        <a href="/JgBtl/Handbuch/">Dienstvorschrift</a>
     </div>
 </nav>
 
-<main class="hero">
-    <div class="status-tag">
-        <span style="width: 8px; height: 8px; background: var(--bw-lime); border-radius: 50%;"></span>
-        Status: Einsatzbereit / Aufbauphase
-    </div>
+<div class="handbook-container">
+    <aside class="sidebar">
+        <h5>Inhaltsverzeichnis</h5>
+        <ul>
+            <li><a href="#allgemein">1.0 Allgemeine Grundlagen</a></li>
+            <li><a href="#verhalten">2.0 Verhalten im Dienst</a></li>
+            <li><a href="#funk">3.0 Funkdisziplin</a></li>
+            <li><a href="#einsatz">5.0 Gefechtsdienst</a></li>
+        </ul>
+    </aside>
 
-    <h1>Horrido, Joho!<br>Jägerbataillon</h1>
+    <main class="content">
+        <header class="doc-header">
+            <span>Verschlusssache - Nur für den Dienstgebrauch</span>
+            <h1>ZENTRALE DIENSTVORSCHRIFT (ZDV)</h1>
+            <p>Ausgabe 2026 | Jägerbataillon Division Nürnberg</p>
+        </header>
 
-    <p class="hero-desc">
-        Infanteristischer Kampf, Präzision und unbedingter Zusammenhalt. 
-        Wir sichern den Einsatzraum Nürnberg mit Disziplin und modernster Taktik.
-    </p>
+        <section id="allgemein">
+            <h2>Allgemeine Grundlagen</h2>
+            <div class="paragraph">
+                <span class="para-num">1.1</span>
+                Jeder Soldat des Jägerbataillons hat sich zu jeder Zeit diszipliniert und kameradschaftlich zu verhalten. Der Dienst im Bataillon erfordert absolute Zuverlässigkeit.
+            </div>
+            <div class="paragraph">
+                <span class="para-num">1.2</span>
+                Befehl und Gehorsam bilden das Fundament der Einsatzbereitschaft. Unkenntnis der Vorschriften schützt nicht vor Konsequenzen.
+            </div>
+        </section>
 
-    <div class="bento">
-        <div class="card" onclick="window.location.href='/JgBtl/Handbuch/'">
-            <i data-lucide="book-marked" size="28"></i>
-            <h3>Diensthandbuch</h3>
-            <p>Zentrale SOPs, Funkcodes und Gefechtsregeln für den aktiven Dienst.</p>
-            <div class="progress-container"><div class="progress-bar" style="width: 95%;"></div></div>
+        <section id="verhalten">
+            <h2>Verhalten im Dienst</h2>
+            <div class="strict-notice">
+                <i data-lucide="alert-octagon"></i>
+                <div>
+                    <b>Strenge Anordnung</b>
+                    Jegliches Fehlverhalten, das den Ruf der Division oder die Sicherheit der Kameraden gefährdet, wird unmittelbar durch das S1-Büro sanktioniert.
+                </div>
+            </div>
+            <ul class="doc-list">
+                <li>Pünktliches Erscheinen zu allen Dienstantritten.</li>
+                <li>Korrekte Trageweise der Uniform gemäß Anzugordnung.</li>
+                <li>Meldung von Ausfällen oder Verzögerungen über die Meldekette.</li>
+                <li>Unterlassen von unbefugter Weitergabe interner Informationen.</li>
+            </ul>
+        </section>
+
+        <section id="funk">
+            <h2>Funkdisziplin</h2>
+            <div class="paragraph">
+                <span class="para-num">3.1</span>
+                Funkgespräche sind kurz, klar und sachlich zu führen. Überflüssige Kommunikation ("Radio-Check" ohne Grund etc.) ist zu unterlassen.
+            </div>
+            <div class="paragraph">
+                <span class="para-num">3.2</span>
+                Die Nutzung der offiziellen Rufnamen (Callsigns) ist zwingend erforderlich. Private Namen haben im Funk nichts verloren.
+            </div>
+        </section>
+
+        <section id="einsatz">
+            <h2>Gefechtsdienst</h2>
+            <div class="paragraph">
+                <span class="para-num">5.1</span>
+                Im Einsatzraum (Nürnberg/Kaserne) ist die Sicherung oberstes Gebot. Ein Jäger ist niemals unvorbereitet.
+            </div>
+            <div class="paragraph">
+                <span class="para-num">5.2</span>
+                Das Prinzip "Feuer und Bewegung" muss von jedem Gruppenmitglied perfekt beherrscht werden. Regelmäßige Übung ist Pflicht.
+            </div>
+        </section>
+
+        <div class="work-banner" style="background: rgba(141, 160, 94, 0.05); margin-top: 100px;">
+            <i data-lucide="signature"></i>
+            <span>Gez. Die Bataillonsführung | Letzte Änderung: 30. April 2026</span>
         </div>
-
-        <div class="card">
-            <i data-lucide="truck" size="28"></i>
-            <h3>Fuhrpark</h3>
-            <p>Logistikzentrum für GTK Boxer und TPz Fuchs. Wartung läuft.</p>
-            <div class="progress-container"><div class="progress-bar" style="width: 40%;"></div></div>
-        </div>
-
-        <div class="info-book">
-            <h4><i data-lucide="info" size="16"></i> Was sind Jäger?</h4>
-            <p>
-                Kern der Infanterie. Spezialisiert auf Kampf im Wald und urbanen Raum. 
-                <br><br>
-                <b>Motto:</b> "Ran an den Feind!" <br>
-                <b>Kern:</b> Hohe Beweglichkeit und blitzartiges Zupacken.
-            </p>
-            <span class="page-num">DV 1/0 - JgBtl</span>
-        </div>
-
-        <div class="card">
-            <i data-lucide="users-2" size="28"></i>
-            <h3>Stammrolle</h3>
-            <p>Hierarchie der Division und aktuelle Kompanie-Einteilung.</p>
-            <div class="progress-container"><div class="progress-bar" style="width: 25%;"></div></div>
-        </div>
-
-        <div class="card">
-            <i data-lucide="map-pin" size="28"></i>
-            <h3>Einsatzraum</h3>
-            <p>Überwachung und Sicherung der Kasernenanlage Nürnberg.</p>
-            <div class="progress-container"><div class="progress-bar" style="width: 60%;"></div></div>
-        </div>
-
-        <div class="card" style="border-style: dashed;">
-            <i data-lucide="send" size="28"></i>
-            <h3>Rekrutierung</h3>
-            <p>Meldung beim S1-Büro für Versetzungsanträge und Neuaufnahmen.</p>
-        </div>
-    </div>
-
-    <div class="work-banner">
-        <i data-lucide="alert-circle" size="18" style="color: var(--bw-lime);"></i>
-        <span><b>Meldung:</b> Die taktischen Inhalte werden täglich synchronisiert. Prüfen Sie regelmäßig die Dienstvorschriften.</span>
-    </div>
-</main>
+    </main>
+</div>
 
 <footer>
-    <div>&copy; 2026 Jägerbataillon - Nur für den Dienstgebrauch</div>
-    <div>System: BK-92 Digital Command</div>
+    <div class="footer-col">
+        <span class="footer-label">Dokumenten-ID</span>
+        <span class="footer-data">ZDV-1-0-INF-2026</span>
+    </div>
+    <div class="footer-col">
+        <span class="footer-label">Sicherheitsstufe</span>
+        <span class="footer-data">STRENG GEHEIM // A2</span>
+    </div>
+    <div class="footer-col">
+        <span class="footer-label">System-Status</span>
+        <span class="footer-data">JgBtl-DIV-DIGITAL // AKTIV</span>
+    </div>
+    <div class="footer-col">
+        <span class="footer-label">Standort</span>
+        <span class="footer-data">KASERNE NÜRNBERG</span>
+    </div>
+
+    <div class="footer-copyright">
+        &copy; 2026 Jägerbataillon Division — Nur für den Dienstgebrauch (VS-NfD)
+    </div>
 </footer>
 
 <script>
-    lucide.createIcons();
+    // Initialisierung der Icons mit feineren Linien für den 2026-Look
+    lucide.createIcons({
+        attrs: {
+            'stroke-width': 1.5,
+            'class': 'lucide-icon'
+        }
+    });
+    
+    // Smooth Scroll für Sidebar
+    document.querySelectorAll('.sidebar a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 </script>
 
 </body>
