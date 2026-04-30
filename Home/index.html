@@ -1,292 +1,167 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JgBtl | Jägerbataillon</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            --bw-olive: #4b533a;
-            --bw-forest: #353b29;
-            --bw-lime: #8da05e;
-            --bw-sand: #d1c7a7;
-            --bw-bg: #0f110c; /* Etwas dunkler für mehr Tiefe */
-            --bw-card: #1a1f16;
-            --text-main: #f5f5f5;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --bw-green: #4f5d3d;
+            --bw-dark: #121411;
+            --bw-border: rgba(163, 177, 138, 0.3);
+            --bw-accent: #a3b18a;
+            --text: #e0e0e0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bw-bg);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Subtiler animierter Hintergrund */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 10%, rgba(141,160,94,0.08), transparent 50%),
-                        radial-gradient(circle at 90% 90%, rgba(75,83,58,0.1), transparent 50%);
-            z-index: -1;
+            background-color: var(--bw-dark);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            /* Subtile taktische Textur */
+            background-image: radial-gradient(var(--bw-green) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            background-alpha: 0.05;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 15px 8%;
-            background: rgba(53, 59, 41, 0.7);
-            backdrop-filter: blur(12px); /* Moderner Glass-Look */
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(141,160,94,0.2);
+            padding: 12px 5%;
+            background: rgba(18, 20, 17, 0.95);
+            border-bottom: 1px solid var(--bw-border);
             position: sticky;
-            top: 0;
-            z-index: 100;
+            top: 0; z-index: 100;
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
+        .logo { font-family: 'Oswald'; font-size: 1.2rem; letter-spacing: 1px; color: var(--bw-accent); display: flex; align-items: center; gap: 8px; }
 
-        .logo span { color: var(--bw-lime); opacity: 0.9; }
+        .hero { padding: 40px 5%; max-width: 1200px; margin: auto; }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
+        h1 { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 15px; color: #fff; }
+        
+        .hero-desc { color: var(--bw-accent); max-width: 500px; margin-bottom: 30px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--bw-lime);
-            opacity: 1;
-        }
-
-        .hero {
-            padding: 80px 8%;
-            max-width: 1400px;
-            margin: auto;
-        }
-
-        .status-tag {
-            background: rgba(141,160,94,0.1);
-            border: 1px solid rgba(141,160,94,0.3);
-            color: var(--bw-lime);
-            padding: 6px 14px;
-            border-radius: 100px; /* Pill-Shape ist moderner */
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 24px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            text-transform: uppercase;
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            color: var(--bw-sand);
-            max-width: 600px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
+        /* Kompaktes Bento Grid */
         .bento {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
         .card {
-            background: var(--bw-card);
-            padding: 40px;
-            border-radius: 16px; /* Abgerundet wirkt wertiger */
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--bw-border);
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover { background: rgba(163, 177, 138, 0.08); border-color: var(--bw-accent); }
+        .card i { color: var(--bw-accent); margin-bottom: 10px; }
+        .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 8px; font-size: 1.1rem; }
+        .card p { font-size: 0.85rem; color: #aaa; margin-bottom: 15px; }
+
+        /* Tactical Progress Bar */
+        .bar-bg { width: 100%; height: 3px; background: rgba(255,255,255,0.1); }
+        .bar-fill { height: 100%; background: var(--bw-accent); box-shadow: 0 0 10px var(--bw-accent); }
+
+        /* Das "Buch" / Infobox in der Ecke */
+        .info-book {
+            background: var(--bw-green);
+            border: 1px solid var(--bw-accent);
+            padding: 20px;
+            color: #fff;
             position: relative;
-            overflow: hidden;
+            grid-column: span 1;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            background: #222a1d;
-            border-color: rgba(141,160,94,0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+        .info-book h4 { font-family: 'Oswald'; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 10px; padding-bottom: 5px; }
+        .info-book p { font-size: 0.8rem; line-height: 1.3; color: #f0f0f0; }
+        .info-book .page-num { position: absolute; bottom: 10px; right: 15px; font-family: 'Oswald'; opacity: 0.5; font-size: 0.7rem; }
 
-        .card h3 {
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            letter-spacing: -0.3px;
-        }
+        footer { border-top: 1px solid var(--bw-border); padding: 20px 5%; display: flex; justify-content: space-between; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; }
 
-        .card i {
-            color: var(--bw-lime);
-            margin-bottom: 24px;
-            opacity: 0.9;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: var(--bw-sand);
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        /* Fortschrittsbalken Modern */
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--bw-olive), var(--bw-lime));
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(141,160,94,0.3);
-        }
-
-        .work {
-            margin-top: 80px;
-            border-radius: 12px;
-            background: rgba(75, 83, 58, 0.1);
-            border: 1px solid rgba(75, 83, 58, 0.2);
-            padding: 20px 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--bw-sand);
-            font-size: 0.9rem;
-        }
-
-        .work b { color: var(--bw-lime); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding-top: 40px; }
-        }
+        @media (max-width: 800px) { .bento { grid-template-columns: 1fr; } }
     </style>
 </head>
-
 <body>
 
 <nav>
-    <div class="logo">
-        <i data-lucide="shield-check" size="24"></i>
-        JgBtl<span>.DIVISION</span>
-    </div>
-
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/JgBtl/Fahrzeuge/">Fahrzeuge</a>
-        <a href="/JgBtl/Handbuch/">Handbuch</a>
+    <div class="logo"><i data-lucide="shield"></i> JgBtl <span>292</span></div>
+    <div style="display: flex; gap: 20px; font-size: 0.8rem; font-weight: 600;">
+        <span>NÜRNBERG // 2026</span>
+        <span style="color: var(--bw-accent);">STATUS: BEREIT</span>
     </div>
 </nav>
-    
+
 <main class="hero">
-    <div class="status-tag">
-        <span style="width: 8px; height: 8px; background: var(--bw-lime); border-radius: 50%; display: inline-block;"></span>
-        System: Aufbauphase
-    </div>
-
-    <h1>Jägerbataillon<br>Division</h1>
-
-    <p>
-        Präzision. Disziplin. Kameradschaft.<br>
-        Wir entwickeln aktuell unsere Infrastruktur, Fahrzeuge und das zentrale Regelwerk für den aktiven Dienst.
-    </p>
+    <h1>Horrido, Joho!</h1>
+    <p class="hero-desc">Jägerbataillon Division: Infanteristischer Kampf, Präzision und unbedingter Zusammenhalt im Einsatzraum.</p>
 
     <div class="bento">
-        <div class="card" onclick="window.location.href='/JgBtl/Handbuch/'" style="cursor: pointer;">
-            <i data-lucide="book-marked" size="32"></i>
+        <div class="card">
+            <i data-lucide="book-open" size="24"></i>
             <h3>Diensthandbuch</h3>
-            <p>Das Kernstück unserer Ausbildung. Alle Regeln, Funkcodes und Standard-Prozeduren kompakt zusammengefasst.</p>
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 95%;"></div>
-            </div>
+            <p>SOPs, Funkdisziplin und Gefechtsdienst aller Truppen. Stand: 2026.</p>
+            <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
         </div>
 
         <div class="card">
-            <i data-lucide="component" size="32"></i>
+            <i data-lucide="Zap" size="24"></i>
             <h3>Fuhrpark</h3>
-            <p>Instandsetzung und Konfiguration unserer Fahrzeugflotte. Schrittweise Erweiterung des Bestands.</p>
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 45%;"></div>
-            </div>
+            <p>GTK Boxer & TPz Fuchs. Status: Instandsetzung & Wartung.</p>
+            <div class="bar-bg"><div class="bar-fill" style="width: 40%;"></div></div>
+        </div>
+
+        <div class="info-book">
+            <h4><i data-lucide="info" size="14"></i> Was sind Jäger?</h4>
+            <p>
+                Die Jägertruppe ist der Kern der Infanterie. Wir sind spezialisiert auf den Kampf im "schwierigen Gelände" – also Wald und urbanes Gebiet. 
+                <br><br>
+                <b>Motto:</b> "Ran an den Feind!" <br>
+                <b>Kernkompetenz:</b> Hohe Beweglichkeit und blitzartiges Zupacken.
+            </p>
+            <span class="page-num">DV 1/0 - INF</span>
         </div>
 
         <div class="card">
-            <i data-lucide="bar-chart-big" size="32"></i>
-            <h3>Hierarchie</h3>
-            <p>Die Struktur der Division. Erfassung der Dienstgrade und Zuweisung der Verantwortungsbereiche.</p>
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 20%;"></div>
-            </div>
+            <i data-lucide="users" size="24"></i>
+            <h3>Stammrolle</h3>
+            <p>Erfassung der Dienstgrade und Kompanieeinteilung.</p>
+            <div class="bar-bg"><div class="bar-fill" style="width: 25%;"></div></div>
         </div>
 
         <div class="card">
-            <i data-lucide="map" size="32"></i>
-            <h3>Einsatzort</h3>
-            <p>Bundeswehr Nürnberg. Optimierung der Kasernenanlage für Training und Einsatzbereitschaft.</p>
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 30%;"></div>
-            </div>
+            <i data-lucide="map" size="24"></i>
+            <h3>Einsatzraum</h3>
+            <p>Raum Nürnberg. Sicherung kritischer Infrastruktur.</p>
+            <div class="bar-bg"><div class="bar-fill" style="width: 60%;"></div></div>
         </div>
-    </div>
 
-    <div class="work">
-        <i data-lucide="info" size="18" style="color: var(--bw-lime);"></i>
-        <span><b>Meldung:</b> Die Inhalte dieser Plattform werden täglich aktualisiert. Bitte prüfen Sie regelmäßig das Handbuch auf Updates.</span>
+        <div class="card" style="border-style: dashed;">
+            <i data-lucide="mail" size="24"></i>
+            <h3>Meldung</h3>
+            <p>Anfragen für Versetzungen oder Rekrutierung über das S1-Büro.</p>
+        </div>
     </div>
 </main>
 
+<footer>
+    <div>&copy; 2026 Jägerbataillon - Nur für den Dienstgebrauch</div>
+    <div>Digitales Führungs-System // BK-92</div>
+</footer>
+
 <script>
-    // Initialisiert die Icons
     lucide.createIcons();
 </script>
 
 </body>
-</html>   
+</html>
